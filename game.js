@@ -1,0 +1,432 @@
+// let input = document.querySelector('.input');
+// let output = document.querySelector('.output');
+// let colors = ['tomato', 'deeppink', 'skyblue', 'dodgerblue', 'violet', 'darkslateblue', 'green', 'crimson']
+
+
+// function colorNames() {
+//   let inputVal = document.querySelector('input').value;
+//   output.innerHTML = inputVal; // print out
+
+//   let randomColors = Math.floor((Math.random() * colors.length + 1)); // random color names
+
+//   if (output.innerHTML) {
+//     inputVal.style.color = colors[randomColors];
+//   }
+
+// }
+
+// input.addEventListener('input', colorNames);
+
+const colorList = [
+    "Black",
+    "Blue",
+    "BlueViolet",
+    "Brown",
+    "BurlyWood",
+    "CadetBlue",
+    "Chocolate",
+    "Coral",
+    "CornflowerBlue",
+    "Crimson",
+    "DarkBlue",
+    "DarkCyan",
+    "DarkGoldenRod",
+    "DarkGray",
+    "DarkGrey",
+    "DarkGreen",
+    "DarkKhaki",
+    "DarkMagenta",
+    "DarkOliveGreen",
+    "DarkOrange",
+    "DarkOrchid",
+    "DarkRed",
+    "DarkSalmon",
+    "DarkSeaGreen",
+    "DarkSlateBlue",
+    "DarkSlateGray",
+    "DarkSlateGrey",
+    "DarkTurquoise",
+    "DarkViolet",
+    "DeepPink",
+    "DeepSkyBlue",
+    "DimGray",
+    "DimGrey",
+    "DodgerBlue",
+    "FireBrick",
+    "ForestGreen",
+    "Fuchsia",
+    "Gold",
+    "GoldenRod",
+    "Gray",
+    "Grey",
+    "Green",
+    "HotPink",
+    "IndianRed",
+    "Indigo",
+    "LightCoral",
+    "LightPink",
+    "LightSalmon",
+    "LightSeaGreen",
+    "LightSkyBlue",
+    "LightSlateGray",
+    "LightSlateGrey",
+    "LightSteelBlue",
+    "LimeGreen",
+    "Magenta",
+    "Maroon",
+    "MediumAquaMarine",
+    "MediumBlue",
+    "MediumOrchid",
+    "MediumPurple",
+    "MediumSeaGreen",
+    "MediumSlateBlue",
+    "MediumSpringGreen",
+    "MediumTurquoise",
+    "MediumVioletRed",
+    "MidnightBlue",
+    "Navy",
+    "Olive",
+    "OliveDrab",
+    "Orange",
+    "OrangeRed",
+    "Orchid",
+    "PaleVioletRed",
+    "Peru",
+    "Pink",
+    "Plum",
+    "Purple",
+    "RebeccaPurple",
+    "Red",
+    "RosyBrown",
+    "RoyalBlue",
+    "SaddleBrown",
+    "Salmon",
+    "SandyBrown",
+    "SeaGreen",
+    "Sienna",
+    "Silver",
+    "SkyBlue",
+    "SlateBlue",
+    "SlateGray",
+    "SlateGrey",
+    "SteelBlue",
+    "Tan",
+    "Teal",
+    "Tomato",
+    "Turquoise",
+    "Violet",
+    "YellowGreen",
+  ];
+
+var countryList = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Anguilla",
+  "Argentina",
+  "Armenia",
+  "Aruba",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bermuda",
+  "Bhutan",
+  "Bolivia",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Congo",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Ecuador",
+  "Egypt",
+  "Estonia",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Gibraltar",
+  "Greece",
+  "Greenland",
+  "Grenada",
+  "Guam",
+  "Guatemala",
+  "Guernsey",
+  "Guinea",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jersey",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kuwait",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Macau",
+  "Macedonia",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Montserrat",
+  "Morocco",
+  "Mozambique",
+  "Namibia",
+  "Nepal",
+  "Netherlands",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palestine",
+  "Panama",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Reunion",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Samoa",
+  "Satellite",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Spain",
+  "Sudan",
+  "Suriname",
+  "Swaziland",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Tonga",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Uganda",
+  "Ukraine",
+  "Uruguay",
+  "Uzbekistan",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe"];
+
+/*
+  On va utiliser deux tableaux contenant le nom des pays : un avec tout les noms et un où l'on a enlevé le pays que l'on doit trouver.
+  On va pouvoir tirer aléatoirement les nom de pays qu'on va placer dans un tableau, puis on va choisir un indice au hasard dans
+  ce tableau pour y placer le pays à trouver. Ainsi, celui-ci ne sera présent qu'une seule fois dans le tableau.
+*/
+
+  
+var countryListWithoutCountryToFind = countryList;
+var buttonCountryList = [];
+var numberWords = 200;
+
+ //countdown
+ //Define vars to hold time values
+ let seconds = 0;
+ let minutes = 0;
+ let hours = 0;
+ 
+ //Define vars to hold "display" value
+ let displaySeconds = 0;
+ let displayMinutes = 0;
+ let displayHours = 0;
+ 
+ //Define var to hold setInterval() function
+ let interval = null;
+ 
+ //Define var to hold stopwatch status
+ let status = "stopped";
+ 
+ //Stopwatch function (logic to determine when to increment next value, etc.)
+ function stopWatch(){
+ 
+     seconds++;
+ 
+     //Logic to determine when to increment next value
+     if(seconds / 60 === 1){
+         seconds = 0;
+         minutes++;
+ 
+         if(minutes / 60 === 1){
+             minutes = 0;
+             hours++;
+         }
+ 
+     }
+ 
+     //If seconds/minutes/hours are only one digit, add a leading 0 to the value
+     if(seconds < 10){
+         displaySeconds = "0" + seconds.toString();
+     }
+     else{
+         displaySeconds = seconds;
+     }
+ 
+     if(minutes < 10){
+         displayMinutes = "0" + minutes.toString();
+     }
+     else{
+         displayMinutes = minutes;
+     }
+ 
+     if(hours < 10){
+         displayHours = "0" + hours.toString();
+     }
+     else{
+         displayHours = hours;
+     }
+ 
+     //Display updated time values to user
+     document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+ 
+ }
+ 
+ 
+ 
+ function startStop(){
+ 
+     if(status === "stopped"){
+ 
+         //Start the stopwatch (by calling the setInterval() function)
+         interval = window.setInterval(stopWatch, 1000);
+         document.getElementById("startStop").innerHTML = "Stop";
+         status = "started";
+ 
+     }
+     else{
+         window.clearInterval(interval);
+         document.getElementById("startStop").innerHTML = "Start";
+         status = "stopped";
+     }
+ }
+ 
+ //Function to reset the stopwatch
+ function reset(){
+ 
+     window.clearInterval(interval);
+     seconds = 0;
+     minutes = 0;
+     hours = 0;
+     document.getElementById("display").innerHTML = "00:00:00";
+     document.getElementById("startStop").innerHTML = "Start";
+ 
+ }
+
+
+function win() {
+    startStop();
+ }
+
+function startGame() {
+    startStop(); // lancement chrono dès le départ
+    var countryToFind = countryList[Math.floor(Math.random()*countryList.length)];  // le pays à trouver dans la liste
+
+    var countryIndex = countryList.indexOf(countryToFind);    // construction de countryListWithoutCountryToFind[]
+    countryListWithoutCountryToFind.splice(countryIndex, 1);
+
+    const instruction = document.getElementById('instruction');   // affichage pays à trouver
+    const printCountry = document.createElement('p');
+    printCountry.innerHTML = "Country to find : " + countryToFind;
+    instruction.appendChild(printCountry);
+
+    for (let i = 0; i < numberWords; i++) {   // génération des pays
+        buttonCountryList.push(countryListWithoutCountryToFind[Math.floor(Math.random()*countryListWithoutCountryToFind.length)]);    // random country
+    }
+
+    const keyCountryToFind = Math.floor(Math.random()*buttonCountryList.length);
+    const classCountryToFind = ".output" + keyCountryToFind;
+    buttonCountryList[keyCountryToFind] = countryToFind;
+
+
+    const paragraph = document.getElementById('output');    // on récupère le <p>
+    const button = document.createElement('p');
+
+    for (let i = 0; i < numberWords; i++) {
+        var nameOutput = ".output" + i;    //nom du button
+        if (i == keyCountryToFind) {
+            button.innerHTML += '<button onclick="win();" class="country output' + i + '"></button>&emsp;';    // nouveau <button>
+        }
+        else {
+            button.innerHTML += '<button class="country output' + i + '"></button>&emsp;';    // nouveau <button>
+        }
+        paragraph.appendChild(button);    // on le rajoute dans le <p>
+        const buttonCountry = document.querySelector(nameOutput);    // on récupère le <button> qui vient d'être créé
+        buttonCountry.innerText = " " + buttonCountryList[i];    // on affiche le pays
+
+        let randomColor = Math.floor((Math.random() * colorList.length));     // random color 
+        buttonCountry.style.color = colorList[randomColor];     // on change la couleur d'affichage du <button>
+    }
+}

@@ -1,0 +1,54 @@
+body {
+    line-height: 24px;
+    font-family: Verdana, sans-serif;
+    cursor: default;
+}
+
+
+table {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+td {
+    border: 1px solid;
+}
+
+p {
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.instruction {
+    font-size: 20px;
+}
+
+.country {
+    border: none;
+    background-color: transparent;
+    padding: 1px;
+    margin: 1px auto 1px auto;
+    font-size: 20px;
+}
+
+/*for the countdown*/
+
+.container{
+    height: 300px;
+    width: 100%;
+}
+
+#display{
+    width: 100%;
+    font-size: 72px;
+    text-align: center;
+    margin: 40px auto;
+}
+
+.buttons{
+    text-align: center;
+    width: 100%;
+}
