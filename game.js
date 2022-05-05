@@ -388,7 +388,7 @@ var numberWords = 200;
 
 function win() {
     startStop();
-    await sleep(5000);
+    //await sleep(5000);
     window.location.replace("https://embrayage.netlify.app/");
  }
 
