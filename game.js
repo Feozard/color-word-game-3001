@@ -388,7 +388,7 @@ var numberWords = 200;
 
 function win() {
     startStop();
-    startGame();
+    location.reload();
  }
 
 function startGame() {

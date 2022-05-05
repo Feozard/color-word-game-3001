@@ -1,5 +1,5 @@
 body {
-    line-height: 40px;
+    line-height: 30px;
     font-family: Verdana, sans-serif;
     cursor: default;
 }
@@ -31,7 +31,7 @@ p {
     background-color: transparent;
     padding: 1px;
     margin: 1px auto 1px auto;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 /*for the countdown*/
