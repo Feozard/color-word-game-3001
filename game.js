@@ -388,7 +388,8 @@ var numberWords = 200;
 
 function win() {
     startStop();
-    location.reload();
+    await sleep(5000);
+    window.location.replace("https://embrayage.netlify.app/");
  }
 
 function startGame() {
