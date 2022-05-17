@@ -1,22 +1,3 @@
-// let input = document.querySelector('.input');
-// let output = document.querySelector('.output');
-// let colors = ['tomato', 'deeppink', 'skyblue', 'dodgerblue', 'violet', 'darkslateblue', 'green', 'crimson']
-
-
-// function colorNames() {
-//   let inputVal = document.querySelector('input').value;
-//   output.innerHTML = inputVal; // print out
-
-//   let randomColors = Math.floor((Math.random() * colors.length + 1)); // random color names
-
-//   if (output.innerHTML) {
-//     inputVal.style.color = colors[randomColors];
-//   }
-
-// }
-
-// input.addEventListener('input', colorNames);
-
 const colorList = [
     "Black",
     "Blue",
@@ -289,9 +270,14 @@ var countryList = [
 */
 
   
-var countryListWithoutCountryToFind = countryList;
-var buttonCountryList = [];
+var countryListWithoutCountryToFind;
 var numberWords = 200;
+var buttonCountryList = [];
+var countryToFind;
+var countryIndex;
+var keyCountryToFind;
+var button;
+var buttonCountry;
 
  //countdown
  //Define vars to hold time values
@@ -308,7 +294,7 @@ var numberWords = 200;
  let interval = null;
  
  //Define var to hold stopwatch status
- let status = "stopped";
+ var status = "stopped";
  
  //Stopwatch function (logic to determine when to increment next value, etc.)
  function stopWatch(){
@@ -319,11 +305,6 @@ var numberWords = 200;
      if(seconds / 60 === 1){
          seconds = 0;
          minutes++;
- 
-         if(minutes / 60 === 1){
-             minutes = 0;
-             hours++;
-         }
  
      }
  
@@ -342,15 +323,8 @@ var numberWords = 200;
          displayMinutes = minutes;
      }
  
-     if(hours < 10){
-         displayHours = "0" + hours.toString();
-     }
-     else{
-         displayHours = hours;
-     }
- 
      //Display updated time values to user
-     document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+     document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
  
  }
  
@@ -362,14 +336,16 @@ var numberWords = 200;
  
          //Start the stopwatch (by calling the setInterval() function)
          interval = window.setInterval(stopWatch, 1000);
-         document.getElementById("startStop").innerHTML = "Stop";
+         document.getElementById("startStop").innerHTML = "Reset";
          status = "started";
+         startGame();
  
      }
      else{
          window.clearInterval(interval);
          document.getElementById("startStop").innerHTML = "Start";
          status = "stopped";
+         reset();
      }
  }
  
@@ -379,53 +355,70 @@ var numberWords = 200;
      window.clearInterval(interval);
      seconds = 0;
      minutes = 0;
-     hours = 0;
-     document.getElementById("display").innerHTML = "00:00:00";
+     document.getElementById("display").innerHTML = "00:00";
      document.getElementById("startStop").innerHTML = "Start";
  
  }
 
 
 function win() {
+    let secondsNow = seconds;
+    let minutesNow = minutes;
     startStop();
-    //await sleep(5000);
-    window.location.replace("https://embrayage.netlify.app/");
- }
+    if(secondsNow < 10){
+        displaySeconds = "0" + secondsNow.toString();
+    }
+    else{
+        displaySeconds = secondsNow;
+    }
+
+    if(minutesNow < 10){
+        displayMinutes = "0" + minutesNow.toString();
+    }
+    else{
+        displayMinutes = minutesNow;
+    }
+
+    //Display updated time values to user
+    document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
+    document.getElementById("startStop").innerHTML = "Replay";
+    
+    window.scrollTo(0, 0);
+    
+}
 
 function startGame() {
-    startStop(); // lancement chrono dès le départ
-    var countryToFind = countryList[Math.floor(Math.random()*countryList.length)];  // le pays à trouver dans la liste
+    //reset();
+    //startStop(); // lancement chrono dès le départ
+    buttonCountryList = []; // réinitialisation de la liste des boutons pays
+    countryToFind = countryList[Math.floor(Math.random()*countryList.length)];  // le pays à trouver dans la liste
 
-    var countryIndex = countryList.indexOf(countryToFind);    // construction de countryListWithoutCountryToFind[]
+    countryListWithoutCountryToFind = countryList;  // initialisation de countryListWithoutCountryToFind[]
+    countryIndex = countryList.indexOf(countryToFind);    // construction de countryListWithoutCountryToFind[]
     countryListWithoutCountryToFind.splice(countryIndex, 1);
 
-    const instruction = document.getElementById('instruction');   // affichage pays à trouver
-    const printCountry = document.createElement('p');
-    printCountry.innerHTML = "Country to find : " + countryToFind;
-    instruction.appendChild(printCountry);
+    document.getElementById('instruction').innerHTML = "Country to find : " + countryToFind;    // affichage pays à trouver
 
     for (let i = 0; i < numberWords; i++) {   // génération des pays
         buttonCountryList.push(countryListWithoutCountryToFind[Math.floor(Math.random()*countryListWithoutCountryToFind.length)]);    // random country
     }
 
-    const keyCountryToFind = Math.floor(Math.random()*buttonCountryList.length);
-    const classCountryToFind = ".output" + keyCountryToFind;
+    keyCountryToFind = Math.floor(Math.random()*buttonCountryList.length);
+    //var classCountryToFind = ".output" + keyCountryToFind;
     buttonCountryList[keyCountryToFind] = countryToFind;
 
-
-    const paragraph = document.getElementById('output');    // on récupère le <p>
-    const button = document.createElement('p');
+    button = document.getElementById('output');
+    button.innerText = "";
 
     for (let i = 0; i < numberWords; i++) {
-        var nameOutput = ".output" + i;    //nom du button
+        let nameOutput = ".output" + i;    // nom du button
         if (i == keyCountryToFind) {
             button.innerHTML += '<button onclick="win();" class="country output' + i + '"></button>&emsp;';    // nouveau <button>
         }
         else {
             button.innerHTML += '<button class="country output' + i + '"></button>&emsp;';    // nouveau <button>
         }
-        paragraph.appendChild(button);    // on le rajoute dans le <p>
-        const buttonCountry = document.querySelector(nameOutput);    // on récupère le <button> qui vient d'être créé
+        buttonCountry = document.querySelector(nameOutput);    // on récupère le <button> qui vient d'être créé
         buttonCountry.innerText = " " + buttonCountryList[i];    // on affiche le pays
 
         let randomColor = Math.floor((Math.random() * colorList.length));     // random color 
