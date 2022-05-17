@@ -32,6 +32,7 @@ p {
     padding: 1px;
     margin: 1px auto 1px auto;
     font-size: 25px;
+    cursor: pointer;
 }
 
 /*for the countdown*/
