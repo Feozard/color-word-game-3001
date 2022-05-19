@@ -97,9 +97,9 @@ const colorList = [
     "Turquoise",
     "Violet",
     "YellowGreen",
-  ];
+    ];
 
-var countryList = [
+const countryList = [
   "Afghanistan",
   "Albania",
   "Algeria",
@@ -261,7 +261,8 @@ var countryList = [
   "Vietnam",
   "Yemen",
   "Zambia",
-  "Zimbabwe"];
+  "Zimbabwe"
+    ];
 
 /*
   On va utiliser deux tableaux contenant le nom des pays : un avec tout les noms et un où l'on a enlevé le pays que l'on doit trouver.
@@ -271,125 +272,134 @@ var countryList = [
 
   
 var countryListWithoutCountryToFind;
-var numberWords = 200;
+var numberWords = 100;
 var buttonCountryList = [];
 var countryToFind;
 var countryIndex;
 var keyCountryToFind;
 var button;
 var buttonCountry;
+var countRound = 1;
+var tabTime = [];
 
- //countdown
- //Define vars to hold time values
- let seconds = 0;
- let minutes = 0;
- let hours = 0;
+//countdown
+//Define vars to hold time values
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
  
- //Define vars to hold "display" value
- let displaySeconds = 0;
- let displayMinutes = 0;
- let displayHours = 0;
+//Define vars to hold "display" value
+let displaySeconds = 0;
+let displayMinutes = 0;
+let displayHours = 0;
  
- //Define var to hold setInterval() function
- let interval = null;
+//Define var to hold setInterval() function
+let interval = null;
  
- //Define var to hold stopwatch status
- var status = "stopped";
+//Define var to hold stopwatch status
+var status = "stopped";
  
- //Stopwatch function (logic to determine when to increment next value, etc.)
- function stopWatch(){
+//Stopwatch function (logic to determine when to increment next value, etc.)
+function stopWatch(){
+    seconds++;
  
-     seconds++;
+    //Logic to determine when to increment next value
+    if(seconds / 60 === 1){
+        seconds = 0;
+        minutes++;
+    }
  
-     //Logic to determine when to increment next value
-     if(seconds / 60 === 1){
-         seconds = 0;
-         minutes++;
- 
-     }
- 
-     //If seconds/minutes/hours are only one digit, add a leading 0 to the value
-     if(seconds < 10){
-         displaySeconds = "0" + seconds.toString();
-     }
-     else{
-         displaySeconds = seconds;
-     }
- 
-     if(minutes < 10){
-         displayMinutes = "0" + minutes.toString();
-     }
-     else{
-         displayMinutes = minutes;
-     }
- 
-     //Display updated time values to user
-     document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
- 
- }
- 
- 
- 
- function startStop(){
- 
-     if(status === "stopped"){
- 
-         //Start the stopwatch (by calling the setInterval() function)
-         interval = window.setInterval(stopWatch, 1000);
-         document.getElementById("startStop").innerHTML = "Reset";
-         status = "started";
-         startGame();
- 
-     }
-     else{
-         window.clearInterval(interval);
-         document.getElementById("startStop").innerHTML = "Start";
-         status = "stopped";
-         reset();
-     }
- }
- 
- //Function to reset the stopwatch
- function reset(){
- 
-     window.clearInterval(interval);
-     seconds = 0;
-     minutes = 0;
-     document.getElementById("display").innerHTML = "00:00";
-     document.getElementById("startStop").innerHTML = "Start";
- 
- }
-
-
-function win() {
-    let secondsNow = seconds;
-    let minutesNow = minutes;
-    startStop();
-    if(secondsNow < 10){
-        displaySeconds = "0" + secondsNow.toString();
+    //If seconds/minutes/hours are only one digit, add a leading 0 to the value
+    if(seconds < 10){
+        displaySeconds = "0" + seconds.toString();
     }
     else{
-        displaySeconds = secondsNow;
+        displaySeconds = seconds;
     }
-
-    if(minutesNow < 10){
-        displayMinutes = "0" + minutesNow.toString();
+ 
+    if(minutes < 10){
+        displayMinutes = "0" + minutes.toString();
     }
     else{
-        displayMinutes = minutesNow;
+        displayMinutes = minutes;
     }
-
+ 
     //Display updated time values to user
     document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
-    document.getElementById("startStop").innerHTML = "Replay";
-    
+}
+ 
+/*function startStop(){
+ 
+    if(status === "stopped"){
+ 
+        //Start the stopwatch (by calling the setInterval() function)
+        interval = window.setInterval(stopWatch, 1000);
+        document.getElementById("startStop").innerHTML = "Reset";
+        status = "started";
+        startGame();
+    }
+    else{
+        window.clearInterval(interval);
+        document.getElementById("startStop").innerHTML = "Start";
+        status = "stopped";
+        reset();
+    }
+}*/
+
+function start() {
+    interval = window.setInterval(stopWatch, 1000);
+    document.getElementById("startStop").innerHTML = "Reset";
+    startGame();
+}
+
+function stop() {
+    window.clearInterval(interval);
+    document.getElementById("startStop").innerHTML = "Start";
+    reset();
+}
+ 
+//Function to reset the stopwatch
+function reset(){
+    window.clearInterval(interval);
+    seconds = 0;
+    minutes = 0;
+    document.getElementById("display").innerHTML = "00:00";
+    document.getElementById("startStop").innerHTML = "Start";
+}
+
+function win() {
     window.scrollTo(0, 0);
+    countRound++;
+    tabTime.push(seconds+60*minutes);
+    if(seconds < 10){
+        displaySeconds = "0" + seconds.toString();
+    }
+    else{
+        displaySeconds = seconds;
+    }
+
+    if(minutes < 10){
+        displayMinutes = "0" + minutes.toString();
+    }
+    else{
+        displayMinutes = minutes;
+    }
+    stop();
+    document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
     
+    if (countRound < 4) {
+        document.getElementById("startStop").innerHTML = "Suivant";
+        document.getElementById("startStop").onclick = start();
+    }
+    else {
+        document.getElementById("startStop").parentNode.removeChild(document.getElementById("startStop"));
+        let mean = tabTime.reduce((a, b) => a + b, 0)/3;
+        mean = mean.toFixed(2);
+        document.getElementById('instruction').innerHTML = "Temps 1 : " + tabTime[0] + "s\tTemps 2 : " + tabTime[1] + "s\tTemps 3 : " + tabTime[2] + "s\tTemps moyen : " + mean + "s";
+    }
 }
 
 function startGame() {
-    //reset();
-    //startStop(); // lancement chrono dès le départ
     buttonCountryList = []; // réinitialisation de la liste des boutons pays
     countryToFind = countryList[Math.floor(Math.random()*countryList.length)];  // le pays à trouver dans la liste
 
