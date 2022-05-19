@@ -281,6 +281,7 @@ var button;
 var buttonCountry;
 var countRound = 1;
 var tabTime = [];
+var tabCouleur = [];
 
 //countdown
 //Define vars to hold time values
@@ -395,7 +396,15 @@ function win() {
         document.getElementById("startStop").parentNode.removeChild(document.getElementById("startStop"));
         let mean = tabTime.reduce((a, b) => a + b, 0)/3;
         mean = mean.toFixed(2);
-        document.getElementById('instruction').innerHTML = "Temps 1 : " + tabTime[0] + "s\tTemps 2 : " + tabTime[1] + "s\tTemps 3 : " + tabTime[2] + "s\tTemps moyen : " + mean + "s";
+        
+        document.getElementById('instruction').innerHTML = ""
+        for (let i = 1; i <= 3; i++) {
+            document.getElementById('instruction').innerHTML += "<b>Temps " + i + " : </b>" + tabTime[i-1] + "s ";
+        }
+        document.getElementById('instruction').innerHTML += "</br>"
+        for (let i = 1; i <= 3; i++) {
+            document.getElementById('instruction').innerHTML += "<b>Couleur " + i + " : </b><span style='color: " + tabCouleur[i-1] + ";'>" + tabCouleur[i-1] + "s </span>";
+        }
     }
 }
 
@@ -433,5 +442,9 @@ function startGame() {
 
         let randomColor = Math.floor((Math.random() * colorList.length));     // random color 
         buttonCountry.style.color = colorList[randomColor];     // on change la couleur d'affichage du <button>
+
+        if (i == keyCountryToFind) {
+            tabCouleur.push(colorList[randomColor]);
+        }
     }
 }
