@@ -28,7 +28,7 @@ p {
 .country {
     border: none;
     background-color: transparent;
-    padding: 1px;
+    padding: 1.5px;
     margin: 1px auto 1px auto;
     font-size: 25px;
     cursor: pointer;
