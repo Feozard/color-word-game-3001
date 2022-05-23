@@ -296,9 +296,18 @@ let displayHours = 0;
  
 //Define var to hold setInterval() function
 let interval = null;
- 
-//Define var to hold stopwatch status
-var status = "stopped";
+
+document.getElementById("startStop").onmouseover = function() 
+{
+    let randomColor = Math.floor((Math.random() * colorList.length));
+    this.style.backgroundColor = colorList[randomColor];
+    this.style.color = "white";
+}
+document.getElementById("startStop").onmouseout = function() 
+{
+    this.style.backgroundColor = "white";
+    this.style.color = "black";
+}
  
 //Stopwatch function (logic to determine when to increment next value, etc.)
 function stopWatch(){
@@ -328,34 +337,16 @@ function stopWatch(){
     //Display updated time values to user
     document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
 }
- 
-/*function startStop(){
- 
-    if(status === "stopped"){
- 
-        //Start the stopwatch (by calling the setInterval() function)
-        interval = window.setInterval(stopWatch, 1000);
-        document.getElementById("startStop").innerHTML = "Reset";
-        status = "started";
-        startGame();
-    }
-    else{
-        window.clearInterval(interval);
-        document.getElementById("startStop").innerHTML = "Start";
-        status = "stopped";
-        reset();
-    }
-}*/
 
 function start() {
     interval = window.setInterval(stopWatch, 1000);
-    document.getElementById("startStop").innerHTML = "";
+    document.getElementById("startStop").innerHTML = "...";
     startGame();
 }
 
 function stop() {
     window.clearInterval(interval);
-    document.getElementById("startStop").innerHTML = "Start";
+    document.getElementById("startStop").innerHTML = "START";
     reset();
 }
  
@@ -365,7 +356,7 @@ function reset(){
     seconds = 0;
     minutes = 0;
     document.getElementById("display").innerHTML = "00:00";
-    document.getElementById("startStop").innerHTML = "Start";
+    document.getElementById("startStop").innerHTML = "START";
 }
 
 function win() {
