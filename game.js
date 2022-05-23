@@ -349,7 +349,7 @@ function stopWatch(){
 
 function start() {
     interval = window.setInterval(stopWatch, 1000);
-    document.getElementById("startStop").innerHTML = "Reset";
+    document.getElementById("startStop").innerHTML = "";
     startGame();
 }
 
@@ -396,15 +396,15 @@ function win() {
         document.getElementById("startStop").parentNode.removeChild(document.getElementById("startStop"));
         let mean = tabTime.reduce((a, b) => a + b, 0)/3;
         mean = mean.toFixed(2);
-        
         document.getElementById('instruction').innerHTML = ""
         for (let i = 1; i <= 3; i++) {
             document.getElementById('instruction').innerHTML += "<b>Temps " + i + " : </b>" + tabTime[i-1] + "s ";
         }
-        document.getElementById('instruction').innerHTML += "</br>"
+        document.getElementById('instruction').innerHTML += "<b>Temps moyen : </b>" + mean + "s</br>";
         for (let i = 1; i <= 3; i++) {
             document.getElementById('instruction').innerHTML += "<b>Couleur " + i + " : </b><span style='color: " + tabCouleur[i-1] + ";'>" + tabCouleur[i-1] + "s </span>";
         }
+        reset();
     }
 }
 
