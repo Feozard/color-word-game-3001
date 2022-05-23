@@ -339,8 +339,11 @@ function stopWatch(){
 }
 
 function start() {
+    if (document.getElementById("startStop").innerHTML == "RESET") {
+        reset();
+    }
     interval = window.setInterval(stopWatch, 1000);
-    document.getElementById("startStop").innerHTML = "...";
+    document.getElementById("startStop").innerHTML = "RESET";
     startGame();
 }
 
@@ -356,7 +359,6 @@ function reset(){
     seconds = 0;
     minutes = 0;
     document.getElementById("display").innerHTML = "00:00";
-    document.getElementById("startStop").innerHTML = "START";
 }
 
 function win() {
@@ -377,11 +379,9 @@ function win() {
         displayMinutes = minutes;
     }
     stop();
-    document.getElementById("display").innerHTML = displayMinutes + ":" + displaySeconds;
     
     if (countRound < 4) {
-        document.getElementById("startStop").innerHTML = "Suivant";
-        document.getElementById("startStop").onclick = start();
+        document.getElementById("startStop").innerHTML = "NEXT";
     }
     else {
         document.getElementById("startStop").parentNode.removeChild(document.getElementById("startStop"));
