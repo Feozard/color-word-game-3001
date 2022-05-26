@@ -363,6 +363,7 @@ function reset(){
 
 function win() {
     window.scrollTo(0, 0);
+    document.getElementById('instruction').innerHTML = 'Well done ! Click on the "next" button to continue.';    
     countRound++;
     tabTime.push(seconds+60*minutes);
     if(seconds < 10){
