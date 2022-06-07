@@ -127,7 +127,6 @@ const countryList = [
   "Brazil",
   "Brunei",
   "Bulgaria",
-  "Burkina Faso",
   "Burundi",
   "Cambodia",
   "Cameroon",
