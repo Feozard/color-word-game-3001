@@ -272,7 +272,7 @@ const countryList = [
 
   
 var countryListWithoutCountryToFind;
-var numberWords = 1000;
+var numberWords = 250;
 var buttonCountryList = [];
 var countryToFind;
 var countryIndex;
