@@ -393,7 +393,7 @@ function win() {
         }
         document.getElementById('instruction').innerHTML += "<b>Temps moyen : </b>" + mean + "s</br>";
         for (let i = 1; i <= 3; i++) {
-            document.getElementById('instruction').innerHTML += "<b>Couleur " + i + " : </b><span style='color: " + tabCouleur[i-1] + ";'>" + tabCouleur[i-1] + "s </span>";
+            document.getElementById('instruction').innerHTML += "<b>Couleur " + i + " : </b><span style='color: " + tabCouleur[i-1] + ";'>" + tabCouleur[i-1] + " </span>";
         }
         reset();
     }
